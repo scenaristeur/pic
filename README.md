@@ -22,6 +22,12 @@ npm run lint
 ### custom service worker
 https://levelup.gitconnected.com/vue-pwa-example-298a8ea953c9
 
+https://github.com/stetrevor/vuejs-pwa-demo
+
+```
+npm run build && cd dist && npx http-server && cd ..
+```
+
 ### ngrok
 
 ngrok http --host-header=rewrite 8080
