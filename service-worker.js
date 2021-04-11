@@ -1,4 +1,4 @@
-importScripts("/pic/precache-manifest.09ea036755e030aebdd3b28704db35d4.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.8ee9fd03c2472a4ba3dc2aae630d7ab3.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts('./src/lib/idb.js');
 importScripts('./src/js/utility.js'); 
