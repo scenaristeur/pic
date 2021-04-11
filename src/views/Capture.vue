@@ -271,14 +271,15 @@ export default {
             app.writeData("sync-selfies", selfie)
               .then(() => sw.sync.register("sync-new-selfies"))
               .then(() => {
-                const snackbarContainer = document.querySelector(
-                  "#confirmation-toast"
-                );
+                // const snackbarContainer = document.querySelector(
+                //   "#confirmation-toast"
+                // );
                 const data = { message: "Your Selfie was saved for syncing!" };
-                alert(data);
-                snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                alert('ok',data.message);
+               // snackbarContainer.MaterialSnackbar.showSnackbar(data);
 
                 app.readAllData("sync-selfies").then((syncSelfies) => {
+                    alert("found", syncSelfies.length)
                   app.updateUI(syncSelfies);
                 });
               })
