@@ -1,13 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <NavBar />
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </div> -->
     <router-view/>
   </div>
 </template>
 
+<script>
+// @ is an alias to /src
+
+export default {
+  name: 'Home',
+  components: {
+    NavBar: () => import("@/components/NavBar"),
+  },
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
