@@ -1,8 +1,13 @@
 <template>
   <b-container>
     <div id="create-post" ref="createPostArea">
-      <video ref="videoPlayer" id="player" autoplay  width="320px"
-        height="240px"></video>
+      <video
+        ref="videoPlayer"
+        id="player"
+        autoplay
+        width="320px"
+        height="240px"
+      ></video>
       <canvas
         ref="canvasElement"
         id="canvas"
@@ -114,10 +119,12 @@ export default {
       fetchedLocation: { lat: 0, lng: 0 },
     };
   },
-  //   mounted() {
-  //    this.initializeMedia();
-  //     this.initializeLocation();
-  //   },
+  mounted() {
+    this.readAllData("sync-selfies").then((syncSelfies) => {
+     // alert("found", syncSelfies.length);
+      this.updateUI(syncSelfies);
+    });
+  },
   methods: {
     initializeLocation() {
       if (!("geolocation" in navigator)) {
@@ -257,7 +264,7 @@ export default {
 
       const id = new Date().getTime();
       console.log(navigator.serviceWorker, window.SyncManager);
-      let app = this
+      let app = this;
       try {
         if ("serviceWorker" in navigator && "SyncManager" in window) {
           navigator.serviceWorker.ready.then((sw) => {
@@ -268,18 +275,19 @@ export default {
               selfie: this.form.picture,
             };
             console.log(selfie);
-            app.writeData("sync-selfies", selfie)
+            app
+              .writeData("sync-selfies", selfie)
               .then(() => sw.sync.register("sync-new-selfies"))
               .then(() => {
                 // const snackbarContainer = document.querySelector(
                 //   "#confirmation-toast"
                 // );
                 const data = { message: "Your Selfie was saved for syncing!" };
-                alert('ok',data.message);
-               // snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                alert("ok", data.message);
+                // snackbarContainer.MaterialSnackbar.showSnackbar(data);
 
                 app.readAllData("sync-selfies").then((syncSelfies) => {
-                    alert("found", syncSelfies.length)
+                 // alert("found", syncSelfies.length);
                   app.updateUI(syncSelfies);
                 });
               })

@@ -4,6 +4,8 @@
             (global = global || self, factory(global.idb = {}));
 }(this, function (exports) { 'use strict';
 
+console.log("idb ok")
+
     function toArray(arr) {
         return Array.prototype.slice.call(arr);
     }

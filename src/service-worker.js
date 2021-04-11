@@ -1,5 +1,5 @@
-importScripts('src/lib/idb.js');
-importScripts('src/js/utility.js'); 
+importScripts('./src/lib/idb.js');
+importScripts('./src/js/utility.js'); 
 
 self.addEventListener('install', event => {
   console.log('[Service Worker] Installing Service Worker ...', event);
