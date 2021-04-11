@@ -91,20 +91,20 @@
 
 <script>
 //import '@/utils/utility.js'
-// import * as idb from "@/lib/idb.js";
+import * as idb from "@/lib/idb.js";
 // // TODO: Change this with your own local IP (either localhost/127.0.0.1) or the IP assigned by the phone hot spot
 // // const SERVER_URL = "http://localhost:3000";
 // // const API_URL = `${SERVER_URL}/selfies`;
 
-// const dbPromise = idb.openDb("selfies-store", 1, (upgradeDB) => {
-//   if (!upgradeDB.objectStoreNames.contains("selfies")) {
-//     upgradeDB.createObjectStore("selfies", { keyPath: "id" });
-//   }
+const dbPromise = idb.openDb("selfies-store", 1, (upgradeDB) => {
+  if (!upgradeDB.objectStoreNames.contains("selfies")) {
+    upgradeDB.createObjectStore("selfies", { keyPath: "id" });
+  }
 
-//   if (!upgradeDB.objectStoreNames.contains("sync-selfies")) {
-//     upgradeDB.createObjectStore("sync-selfies", { keyPath: "id" });
-//   }
-// });
+  if (!upgradeDB.objectStoreNames.contains("sync-selfies")) {
+    upgradeDB.createObjectStore("sync-selfies", { keyPath: "id" });
+  }
+});
 
 export default {
   name: "Capture",
@@ -366,39 +366,39 @@ export default {
       return blob;
     },
 
-    // writeData(storeName, data) {
-    //   return dbPromise.then((db) => {
-    //     const tx = db.transaction(storeName, "readwrite");
-    //     const store = tx.objectStore(storeName);
-    //     store.put(data);
-    //     return tx.complete;
-    //   });
-    // },
-    // readAllData(storeName) {
-    //   return dbPromise.then((db) => {
-    //     const tx = db.transaction(storeName, "readonly");
-    //     const store = tx.objectStore(storeName);
-    //     return store.getAll();
-    //   });
-    // },
-    // clearAllData(storeName) {
-    //   return dbPromise.then((db) => {
-    //     const tx = db.transaction(storeName, "readwrite");
-    //     const store = tx.objectStore(storeName);
-    //     store.clear();
-    //     return tx.complete;
-    //   });
-    // },
-    // deleteItemFromData(storeName, id) {
-    //   dbPromise
-    //     .then((db) => {
-    //       const tx = db.transaction(storeName, "readwrite");
-    //       const store = tx.objectStore(storeName);
-    //       store.delete(id);
-    //       return tx.complete;
-    //     })
-    //     .then(() => console.log("Item deleted!"));
-    // },
+    writeData(storeName, data) {
+      return dbPromise.then((db) => {
+        const tx = db.transaction(storeName, "readwrite");
+        const store = tx.objectStore(storeName);
+        store.put(data);
+        return tx.complete;
+      });
+    },
+    readAllData(storeName) {
+      return dbPromise.then((db) => {
+        const tx = db.transaction(storeName, "readonly");
+        const store = tx.objectStore(storeName);
+        return store.getAll();
+      });
+    },
+    clearAllData(storeName) {
+      return dbPromise.then((db) => {
+        const tx = db.transaction(storeName, "readwrite");
+        const store = tx.objectStore(storeName);
+        store.clear();
+        return tx.complete;
+      });
+    },
+    deleteItemFromData(storeName, id) {
+      dbPromise
+        .then((db) => {
+          const tx = db.transaction(storeName, "readwrite");
+          const store = tx.objectStore(storeName);
+          store.delete(id);
+          return tx.complete;
+        })
+        .then(() => console.log("Item deleted!"));
+    },
   },
 };
 </script>
